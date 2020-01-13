@@ -1,15 +1,24 @@
 // add new list item
-document.getElementById("input").addEventListener("keypress", (e) => {
-    if (e.keyCode == 13) {
+let inputElement = document.getElementById("input")
+inputElement.addEventListener("keypress", (e) => {
+    if (e.keyCode == 13 && inputElement.value !== "") {
         let ol = document.getElementById("list")
         let li = document.createElement("li")
         ol.appendChild(li)
-
-        let newItem = document.getElementById("input").value
-        li.appendChild(document.createTextNode(newItem))
-
-        li.addEventListener("click", function() {
-            li.style.textDecorationLine = (li.style.textDecorationLine == "" || li.style.textDecorationLine == "none") ? "line-through":"none"
+        li.appendChild(document.createTextNode(inputElement.value))
+        li.addEventListener("click", (e) => {
+            if (li.style.textDecorationLine == "" || li.style.textDecorationLine == "none") {
+                li.style.textDecorationLine = "line-through"
+                let i = document.createElement("i")
+                li.appendChild(i)
+                i.className = "fa fa-trash"
+                i.addEventListener("click", () => {
+                    li.remove()
+                })
+            } else {
+                li.style.textDecorationLine = "none"
+                li.removeChild(li.firstElementChild)
+            }
         })
         input.value = ""
     }
