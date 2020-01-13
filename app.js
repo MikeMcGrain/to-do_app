@@ -1,21 +1,15 @@
 document.getElementById("input").addEventListener("keypress", (e) => {
     if (e.keyCode == 13) {
-        let ul = document.getElementById("list")
+        let ol = document.getElementById("list")
         let li = document.createElement("li")
-        ul.appendChild(li)
+        ol.appendChild(li)
 
-        let newItem = document.getElementById('input').value
+        let newItem = document.getElementById("input").value
         li.appendChild(document.createTextNode(newItem))
-
+        
         li.addEventListener("click", function() {
-            if (li.style.textDecorationLine) {
-                li.style.textDecorationLine = "none"
-            }
-            else {
-                li.style.textDecorationLine = "line-through"
-            }
+            li.style.textDecorationLine = (li.style.textDecorationLine == "" || li.style.textDecorationLine == "none") ? "line-through":"none"
         }) 
-
-        document.getElementById('input').value = ""
+        input.value = ""
     }
 })

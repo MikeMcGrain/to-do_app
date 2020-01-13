@@ -2,7 +2,7 @@ body {
     text-align: center;
 }
 
-ul {
+ol {
     width: 25%;
     margin: 0 auto;
 }
@@ -19,11 +19,9 @@ input:focus {
 
 li { 
 	text-align: left;
-	font-size: 40px;
-	list-style: decimal;
+    font-size: 40px;
 }
 
 li:hover {
-    background-color: aqua;
     cursor: pointer;
 }
