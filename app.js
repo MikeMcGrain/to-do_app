@@ -18,7 +18,19 @@ function addItem(itemText) {
             i.className = "fa fa-trash"
 
             // listens to delete item
-            i.addEventListener("click", () => {
+            i.addEventListener("click", (e) => {                
+                let liArray = []
+                let targetText = e.target.parentNode.innerText
+                let liElements = document.querySelectorAll("#list li")
+                for(let i = 0; i < liElements.length; i++){
+                    liArray.push(liElements[i].innerText)
+                }
+                
+                indexRemovalStart = liArray.indexOf(targetText)
+                console.log(targetText)
+                console.log(indexRemovalStart)
+                items.splice(indexRemovalStart, 1)
+                localStorage.setItem("items", JSON.stringify(items))
                 li.remove()
             })
 
@@ -47,13 +59,13 @@ function storeItem(itemText) {
 
 // stores item status
 function storeStatus(completedStatus, targetText) {
-    let liElements = document.querySelectorAll("#list li")
     let liArray = []
+    let liElements = document.querySelectorAll("#list li")
     for(let i = 0; i < liElements.length; i++){
         liArray.push(liElements[i].innerText)
     }
-    items[liArray.indexOf(targetText)].completed = completedStatus
-    localStorage.setItem("items", JSON.stringify(items))
+        items[liArray.indexOf(targetText)].completed = completedStatus
+        localStorage.setItem("items", JSON.stringify(items))
 }
 
 // listens to call newItem() and storeItem()
