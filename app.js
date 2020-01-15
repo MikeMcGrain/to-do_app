@@ -23,10 +23,13 @@ function addItem(itemText) {
             })
 
             completedStatus = true
+            storeStatus(completedStatus, e.target.innerText)
         } else {
             li.style.textDecorationLine = "none"
             li.removeChild(li.firstElementChild)
+
             completedStatus = false
+            storeStatus(completedStatus, e.target.innerText)
         }
     }) 
 
@@ -39,14 +42,18 @@ function storeItem(itemText) {
     newItem.text = itemText
     newItem.completed = false
     items.push(newItem)
-    console.log(newItem)
-
     localStorage.setItem("items", JSON.stringify(items))
 }
 
 // stores item status
-function storeStatus(completedStatus) {
-    // let liElements = document.querySelectorAll("#list li")
+function storeStatus(completedStatus, targetText) {
+    let liElements = document.querySelectorAll("#list li")
+    let liArray = []
+    for(let i = 0; i < liElements.length; i++){
+        liArray.push(liElements[i].innerText)
+    }
+    items[liArray.indexOf(targetText)].completed = completedStatus
+    localStorage.setItem("items", JSON.stringify(items))
 }
 
 // listens to call newItem() and storeItem()
