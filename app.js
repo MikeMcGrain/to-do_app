@@ -23,7 +23,7 @@ document.getElementById("button").addEventListener("click", () => {
     localStorage.clear()
 })
 
-// gets items from storage and adds items to list
+// gets items from storage
 function addStoredItems () {
     if (items == null) {
         items  = []
@@ -36,7 +36,7 @@ function addStoredItems () {
     }
 }
 
-// creates an item and adds it to the list
+// adds item to the list
 function addItem(itemText, completedStatus) {
     // add li and text to DOM
     const ol = document.getElementById("list")
@@ -44,6 +44,7 @@ function addItem(itemText, completedStatus) {
     ol.appendChild(li)
     li.appendChild(document.createTextNode(itemText))
 
+    // add style and trash to completed items
     if (completedStatus == true) {
         // style li
         li.style.textDecorationLine = "line-through"
@@ -55,6 +56,7 @@ function addItem(itemText, completedStatus) {
 
         // add click listener to trash icon
         i.addEventListener("click", (e) => {
+            e.stopPropagation()
             const targetText = e.target.parentNode.innerText
             deleteFromStorage(targetText)               
             li.remove()
@@ -77,14 +79,15 @@ function addItem(itemText, completedStatus) {
             const i = document.createElement("i")
             li.appendChild(i)
             i.className = "fa fa-trash"
-            // change and store status
-            storeStatus(e.target.innerText, completedStatus=true)
             // add click listener to trash icon
             i.addEventListener("click", (e) => {
+                e.stopPropagation()
                 const targetText = e.target.parentNode.innerText
                 deleteFromStorage(targetText)               
                 li.remove()
-             }) 
+             })
+             // change and store status
+             storeStatus(e.target.innerText, completedStatus=true)
         }
     })
     document.getElementById("input").value = ""
