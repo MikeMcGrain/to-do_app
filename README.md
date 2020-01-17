@@ -20,4 +20,8 @@ I really enjoyed tying all of this together: modifying the DOM, events, and loca
 
 ## Author
 
+<<<<<<< HEAD
 * **Mike McGrain** - *Full-Stack Software Developement* - [Website](http://mikemcgrain.com) | [LinkedIn](https://www.linkedin.com/in/michaelmcgrain)
+=======
+* **Mike McGrain** - *Full-Stack Software Developement* - [Website](http://mikemcgrain.com) | [LinkedIn](https://www.linkedin.com/in/michaelmcgrain)
+>>>>>>> 572e24619fdb908581ac5093d359ff7723ab8d49
