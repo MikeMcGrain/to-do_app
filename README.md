@@ -14,7 +14,7 @@ Try it out [here](https://mikemcgrain.github.io/to-do_app/)
 
 ## Summary
 
-The primary goal was to implement a few basic functions: add new items to the list, cross items out, delete items, and reload any remaing items from local storage when the page reloads.  I also made sure that the status of each item (completed or !completed) was stored and displayed accurately upon reloading.
+The primary goal was to implement a few basic functions: add new items, cross items out, delete items, and reload any remaing items from local storage.  I've also stored the status of each item (completed or !completed) so that it can be displayed accurately upon reloading.
 
 I really enjoyed tying all of this together: modifying the DOM, events, and local storage.  Building this definitely added a few tricks to my tool bag.  
 
