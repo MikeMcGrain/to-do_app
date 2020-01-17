@@ -2,8 +2,8 @@
 
 <br>
 
-Make a list - any list!  Cross out some, leave some, and delete one; then come back for more!
-
+Make a list, any list!  Cross one out, leave a few, and delete the rest; then come back for more!
+Written with HTML, pure JavaScript, and minimal CSS.  No external libraries, and no frameworks.
 <br>
 
 View it [here](https://mikemcgrain.github.io/to-do_app/)
@@ -14,9 +14,9 @@ View it [here](https://mikemcgrain.github.io/to-do_app/)
 
 ## Summary
 
-Really enjoyed tieing all of this together - modifying the DOM, events, and local storage.  Definitely added a few tricks to my tool bag.
+The primary goal was to implement a few basic functions: add new items to the list, cross items out, delete items, and reload any remaing items from local storage when the page reloads.  I also made sure that the status of each item (completed or !completed) was stored and displayed accurately upon reloading.
 
-I made sure that the status of the items (completed or not) was preserved and populated when the pages reloads.
+I really enjoyed tying all of this together: modifying the DOM, events, and local storage.  Building this definitely added a few tricks to my tool bag.  
 
 ## Author
 
