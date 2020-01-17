@@ -10,7 +10,7 @@ Try it out [here](https://mikemcgrain.github.io/to-do_app/)
 
 <br>
 
-<image src="screenshot.png">
+<image src="images/screenshot.png">
 
 ## Summary
 
