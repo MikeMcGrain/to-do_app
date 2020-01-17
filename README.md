@@ -2,11 +2,11 @@
 
 <br>
 
-Make a list, any list!  Cross one out, leave a few, and delete the rest; then come back for more!
-Written with HTML, pure JavaScript, and minimal CSS.  No external libraries, and no frameworks.
+A simple to do app written in HTML, minimal CSS, and pure JavaScript (no external libraries or frameworks).
+
 <br>
 
-View it [here](https://mikemcgrain.github.io/to-do_app/)
+Try it out [here](https://mikemcgrain.github.io/to-do_app/)
 
 <br>
 
