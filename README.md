@@ -2,7 +2,7 @@
 
 <br>
 
-Make a list and check it off
+Make a list and check it off.
 
 <br>
 
@@ -18,4 +18,4 @@ paragraph or two here
 
 ## Author
 
-* **Mike McGrain** - *Full-Stack Software Developer* - [Website](https://mikemcgrain.com | [LinkedIn](https://www.linkedin.com/in/michaelmcgrain)
+* **Mike McGrain** - *Full-Stack Software Developement* - [Website](https://mikemcgrain.com) | [LinkedIn](https://www.linkedin.com/in/michaelmcgrain)
