@@ -10,7 +10,7 @@ Try it out [here](https://mikemcgrain.github.io/to-do_app/)
 
 <br>
 
-<image src="images/game_play_crop.png">
+<image src="screenshot.png">
 
 ## Summary
 
