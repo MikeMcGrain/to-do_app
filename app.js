@@ -1,4 +1,4 @@
-let items = JSON.parse(localStorage.getItem('items')) || null
+let items = JSON.parse(localStorage.getItem('items')) || []
 window.addEventListener("load", addStoredItems)
 
 // listens for new input
@@ -23,12 +23,11 @@ document.getElementById("button").addEventListener("click", () => {
 })
 
 // gets items from storage
-function addStoredItems () {
-    items.forEach(savedItem => {
-    addItem(savedItem)
+function addStoredItems() {
+    items.forEach(element => {
+        addItem(element)
     })
 }
-
 
 // adds item to the list
 function addItem(item) {
@@ -60,19 +59,16 @@ function addItem(item) {
     // add click listener to li
     li.addEventListener("click", (e) => {
         if (item.completed == true) {
-            // remove style
             li.style.textDecorationLine = "none"
-            // remove icon
             li.removeChild(li.firstElementChild)
-            // change and store status
-            storeStatus(e.target.innerText, completedStatus=false)
+            item.completed = false
+            storeStatus(item)
         } else {
-            // style li
             li.style.textDecorationLine = "line-through"
-            // add trash icon
             const i = document.createElement("i")
             li.appendChild(i)
             i.className = "fa fa-trash"
+
             // add click listener to trash icon
             i.addEventListener("click", (e) => {
                 e.stopPropagation()
@@ -81,21 +77,22 @@ function addItem(item) {
                 li.remove()
              })
              // change and store status
-             storeStatus(e.target.innerText, completedStatus=true)
+             item.completed = true
+             storeStatus(item)
         }
     })
     document.getElementById("input").value = ""
 }
 
 // stores item status
-function storeStatus(targetText, completedStatus) {
-    let liArray = []
-    const liElements = document.querySelectorAll("#list li")
-    for(let i = 0; i < liElements.length; i++){
-        liArray.push(liElements[i].innerText)
-    }
-    items[liArray.indexOf(targetText)].completed = completedStatus
-    localStorage.setItem("items", JSON.stringify(items))
+function storeStatus(item) {
+    let itemsCopy = JSON.parse(localStorage.getItem("items"))
+    itemsCopy.forEach(function(itemCopy) {
+        if (itemCopy.text == item.text) {           
+            itemCopy.completed = item.completed            
+        }
+    })
+    localStorage.setItem("items", JSON.stringify(itemsCopy))
 }
 
 // deletes item from storage
