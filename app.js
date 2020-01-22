@@ -1,5 +1,9 @@
 let items = JSON.parse(localStorage.getItem('items')) || []
-window.addEventListener("load", addStoredItems)
+window.addEventListener("load", function() {
+    items.forEach(item => {
+        addItem(item)
+    })
+})
 
 // listens for new input
 document.getElementById("input").addEventListener("keypress", (e) => {
@@ -21,13 +25,6 @@ document.getElementById("button").addEventListener("click", () => {
     items = []
     localStorage.clear()
 })
-
-// gets items from storage
-function addStoredItems() {
-    items.forEach(element => {
-        addItem(element)
-    })
-}
 
 // adds item to the list
 function addItem(item) {
