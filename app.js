@@ -1,17 +1,16 @@
-let items = JSON.parse(localStorage.getItem('items'))
+let items = JSON.parse(localStorage.getItem('items')) || null
 window.addEventListener("load", addStoredItems)
 
 // listens for new input
 document.getElementById("input").addEventListener("keypress", (e) => {
-    if (e.keyCode == 13 && document.getElementById("input").value !== "") {
-        const itemText = document.getElementById("input").value 
-        const newItem = {
-            text: itemText,
+    if (e.keyCode == 13 && e.target.value !== "") {
+        let newItem = {
+            text: e.target.value,
             completed: false
         }
         items.push(newItem)
         localStorage.setItem("items", JSON.stringify(items))
-        addItem(newItem.text, newItem.completed)
+        addItem(newItem)
     }
 })
 
@@ -25,27 +24,22 @@ document.getElementById("button").addEventListener("click", () => {
 
 // gets items from storage
 function addStoredItems () {
-    if (items == null) {
-        items  = []
-    } else {
-        let i = 0
-        items.forEach(element => {
-            addItem(items[i].text, items[i].completed)
-            i++
-        })
-    }
+    items.forEach(savedItem => {
+    addItem(savedItem)
+    })
 }
 
+
 // adds item to the list
-function addItem(itemText, completedStatus) {
+function addItem(item) {
     // add li and text to DOM
     const ol = document.getElementById("list")
     const li = document.createElement("li")
     ol.appendChild(li)
-    li.appendChild(document.createTextNode(itemText))
+    li.appendChild(document.createTextNode(item.text))
 
     // add style and trash to completed items
-    if (completedStatus == true) {
+    if (item.completed == true) {
         // style li
         li.style.textDecorationLine = "line-through"
 
@@ -65,7 +59,7 @@ function addItem(itemText, completedStatus) {
 
     // add click listener to li
     li.addEventListener("click", (e) => {
-        if (completedStatus == true) {
+        if (item.completed == true) {
             // remove style
             li.style.textDecorationLine = "none"
             // remove icon
