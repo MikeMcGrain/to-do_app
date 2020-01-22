@@ -106,12 +106,9 @@ function storeStatus(targetText, completedStatus) {
 
 // deletes item from storage
 function deleteFromStorage(targetText) {
-    let liArray = []
-    const liElements = document.querySelectorAll("#list li")
-    for(let i = 0; i < liElements.length; i++){
-        liArray.push(liElements[i].innerText)
-    }
-    indexRemovalStart = liArray.indexOf(targetText)
-    items.splice(indexRemovalStart, 1)
+    let items = JSON.parse(localStorage.getItem('items'))
+    items = items.filter(function(item) {
+        return item.text !== targetText
+    })
     localStorage.setItem("items", JSON.stringify(items))
 }
