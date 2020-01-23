@@ -1,33 +1,27 @@
-let items = JSON.parse(localStorage.getItem('items')) || []
+// loads items from local storage
 window.addEventListener("load", function() {
+    let items = JSON.parse(localStorage.getItem("items")) || []
     items.forEach(item => {
-        addItem(item)
+        renderItem(item)
     })
 })
 
-// listens for new input
-document.getElementById("input").addEventListener("keypress", (e) => {
+// creates new items from input
+document.getElementById("input").addEventListener("keypress", function(e) {
     if (e.keyCode == 13 && e.target.value !== "") {
-        let newItem = {
+        let item = {
             text: e.target.value,
             completed: false
         }
-        items.push(newItem)
+        let items = JSON.parse(localStorage.getItem("items")) || []
+        items.push(item)
         localStorage.setItem("items", JSON.stringify(items))
-        addItem(newItem)
+        renderItem(item)
     }
 })
 
-// listener clears list and storage
-document.getElementById("button").addEventListener("click", () => {
-    document.getElementById("input").value = ""
-    document.getElementById("list").innerHTML = ""
-    items = []
-    localStorage.clear()
-})
-
 // adds item to the list
-function addItem(item) {
+function renderItem(item) {
     // add li and text to DOM
     const ol = document.getElementById("list")
     const li = document.createElement("li")
@@ -59,7 +53,7 @@ function addItem(item) {
             li.style.textDecorationLine = "none"
             li.removeChild(li.firstElementChild)
             item.completed = false
-            storeStatus(item)
+            updateStatus(item)
         } else {
             li.style.textDecorationLine = "line-through"
             const i = document.createElement("i")
@@ -75,14 +69,14 @@ function addItem(item) {
              })
              // change and store status
              item.completed = true
-             storeStatus(item)
+             updateStatus(item)
         }
     })
     document.getElementById("input").value = ""
 }
 
 // stores item status
-function storeStatus(item) {
+function updateStatus(item) {
     let itemsCopy = JSON.parse(localStorage.getItem("items"))
     itemsCopy.forEach(function(itemCopy) {
         if (itemCopy.text == item.text) {           
@@ -100,3 +94,11 @@ function deleteFromStorage(targetText) {
     })
     localStorage.setItem("items", JSON.stringify(items))
 }
+
+// // listener clears list and storage
+// document.getElementById("button").addEventListener("click", function() {
+//     document.getElementById("input").value = ""
+//     document.getElementById("list").innerHTML = ""
+//     localStorage.clear()
+//     // localStorage.setItem("items", [])
+// })
