@@ -30,7 +30,7 @@ function createLiElement(item) {
   li.appendChild(document.createTextNode(item.text))
   if (item.completed == true) {
     li.style.textDecorationLine = "line-through"
-    const i = createDeleteIcon(li)
+    const i = createDeleteIcon(li, item)
     li.appendChild(i)
   }
 
@@ -42,7 +42,7 @@ function createLiElement(item) {
       updateStatus(item)
     } else {
       li.style.textDecorationLine = "line-through"
-      const i = createDeleteIcon(li)
+      const i = createDeleteIcon(li, item)
       li.appendChild(i)
       item.completed = true
       updateStatus(item)
@@ -51,32 +51,31 @@ function createLiElement(item) {
   return li
 }
 
-function createDeleteIcon(li) {
+function createDeleteIcon(li, item) {
   const i = document.createElement("i")
   i.className = "fa fa-trash"
   i.addEventListener("click", function(e) {
     e.stopPropagation()
-    const targetText = e.target.parentNode.innerText
-    deleteFromStorage(targetText)
+    deleteFromStorage(item)
     li.remove()
   })
   return i
 }
 
-function updateStatus(item) {
-  let itemsCopy = JSON.parse(localStorage.getItem("items"))
-  itemsCopy.forEach(function(itemCopy) {
-    if (itemCopy.text == item.text) {
-      itemCopy.completed = item.completed
+function updateStatus(itemToUpdate) {
+  let items = JSON.parse(localStorage.getItem("items"))
+  items.forEach(function(item) {
+    if (item.text == itemToUpdate.text) {
+      item.completed = itemToUpdate.completed
     }
   })
-  localStorage.setItem("items", JSON.stringify(itemsCopy))
+  localStorage.setItem("items", JSON.stringify(items))
 }
 
-function deleteFromStorage(targetText) {
+function deleteFromStorage(itemToDelete) {
   let items = JSON.parse(localStorage.getItem("items"))
   items = items.filter(function(item) {
-    return item.text !== targetText
+    return item.text !== itemToDelete.text
   })
   localStorage.setItem("items", JSON.stringify(items))
 }
