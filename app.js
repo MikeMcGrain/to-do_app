@@ -19,7 +19,6 @@ document.getElementById("input").addEventListener("keypress", function(e) {
 })
 
 function renderItem(item) {
-  // add li and text to DOM
   const ol = document.getElementById("list")
   const li = createLiElement(item)
   ol.appendChild(li)
@@ -30,21 +29,13 @@ function createLiElement(item) {
   const li = document.createElement("li")
   li.appendChild(document.createTextNode(item.text))
 
-  // add style and trash to completed items
   if (item.completed == true) {
     li.style.textDecorationLine = "line-through"
     const i = createDeleteIcon(li)
     li.appendChild(i)
-    i.addEventListener("click", e => {
-      e.stopPropagation()
-      const targetText = e.target.parentNode.innerText
-      deleteFromStorage(targetText)
-      li.remove()
-    })
   }
 
-  // add click listener to li
-  li.addEventListener("click", e => {
+  li.addEventListener("click", function(e) {
     if (item.completed == true) {
       li.style.textDecorationLine = "none"
       li.removeChild(li.firstElementChild)
@@ -54,7 +45,6 @@ function createLiElement(item) {
       li.style.textDecorationLine = "line-through"
       const i = createDeleteIcon(li)
       li.appendChild(i)
-      // change and store status
       item.completed = true
       updateStatus(item)
     }
