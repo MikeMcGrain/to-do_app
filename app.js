@@ -18,6 +18,12 @@ document.getElementById("input").addEventListener("keypress", function(e) {
   }
 })
 
+document.getElementById("button").addEventListener("click", function() {
+  document.getElementById("input").value = ""
+  document.getElementById("list").innerHTML = ""
+  localStorage.setItem("items", JSON.stringify([]))
+})
+
 function renderItem(item) {
   const ol = document.getElementById("list")
   const li = createLiElement(item)
@@ -79,9 +85,3 @@ function deleteFromStorage(itemToDelete) {
   })
   localStorage.setItem("items", JSON.stringify(items))
 }
-
-document.getElementById("button").addEventListener("click", function() {
-  document.getElementById("input").value = ""
-  document.getElementById("list").innerHTML = ""
-  localStorage.setItem("items", JSON.stringify([]))
-})
