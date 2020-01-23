@@ -28,7 +28,6 @@ function renderItem(item) {
 function createLiElement(item) {
   const li = document.createElement("li")
   li.appendChild(document.createTextNode(item.text))
-
   if (item.completed == true) {
     li.style.textDecorationLine = "line-through"
     const i = createDeleteIcon(li)
@@ -55,7 +54,7 @@ function createLiElement(item) {
 function createDeleteIcon(li) {
   const i = document.createElement("i")
   i.className = "fa fa-trash"
-  i.addEventListener("click", e => {
+  i.addEventListener("click", function(e) {
     e.stopPropagation()
     const targetText = e.target.parentNode.innerText
     deleteFromStorage(targetText)
