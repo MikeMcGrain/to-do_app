@@ -6,7 +6,7 @@ A simple to do app written in HTML, minimal CSS, and pure JavaScript (no externa
 
 <br>
 
-Try it out [here](https://mikemcgrain.github.io/to-do_app/)
+Try it out [here](https://mikemcgrain.github.io/to_do_app/)
 
 <br>
 
