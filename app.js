@@ -7,18 +7,18 @@ window.addEventListener("load", function() {
 
 document.getElementById("input").addEventListener("keypress", function(e) {
   if (e.keyCode == 13 && e.target.value !== "") {
-    let item = {
+    let newItem = {
       text: e.target.value,
       completed: false
     }
     let items = JSON.parse(localStorage.getItem("items")) || []
-    items.push(item)
+    items.push(newItem)
     localStorage.setItem("items", JSON.stringify(items))
-    renderItem(item)
+    renderItem(newItem)
   }
 })
 
-document.getElementById("button").addEventListener("click", function() {
+document.getElementById("clear-button").addEventListener("click", function() {
   document.getElementById("input").value = ""
   document.getElementById("list").innerHTML = ""
   localStorage.setItem("items", JSON.stringify([]))
@@ -34,14 +34,14 @@ function renderItem(item) {
 function createLiElement(item) {
   const li = document.createElement("li")
   li.appendChild(document.createTextNode(item.text))
-  if (item.completed == true) {
+  if (item.completed) {
     li.style.textDecorationLine = "line-through"
     const i = createDeleteIcon(li, item)
     li.appendChild(i)
   }
 
   li.addEventListener("click", function(e) {
-    if (item.completed == true) {
+    if (item.completed) {
       li.style.textDecorationLine = "none"
       li.removeChild(li.firstElementChild)
       item.completed = false
